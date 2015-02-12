@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint" id="amq">
+        <route>
+            <from uri="timer:simple?period=5000"/>
+            <setBody>
+                <simple>Hello World</simple>
+            </setBody>
+            <to uri="activemq:s"/>
+        </route>
+        <route>
+            <from uri="activemq:s"/>
+            <to uri="stream:out"/>
+        </route>
+    </camelContext>
+    <bean class="org.apache.activemq.camel.component.ActiveMQComponent" id="activemq">
+     <property name="brokerURL" value="tcp://localhost:61616"/>
+     <property name="userName" value="karaf"/>
+     <property name="password" value="karaf"/>
+    </bean>
+</blueprint>
