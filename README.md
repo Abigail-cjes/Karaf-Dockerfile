@@ -9,4 +9,5 @@ Download the required base image to your docker images repository and amend the 
 Run in Docker:
 
 sudo docker build -t myrepository/myfolder:mytag path/to/Dockerfile
+
 sudo docker run -it --name=containername myrepository/myfolder:mytag
